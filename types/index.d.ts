@@ -117,7 +117,7 @@ declare type SearchParamProps = {
 };
 
 declare type TransformationFormProps = {
-  action: "Add" | "Update";
+  action: "add" | "update";
   userId: string;
   type: TransformationTypeKey;
   creditBalance: number;
@@ -133,4 +133,10 @@ declare type TransformedImageProps = {
   isTransforming: boolean;
   hasDownload?: boolean;
   setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+declare type Image = {
+  aspectRatio: AspectRatioKey;
+  width: number;
+  height: number;
 };

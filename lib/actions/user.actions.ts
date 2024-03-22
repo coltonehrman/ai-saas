@@ -17,6 +17,22 @@ export async function createUser(user: CreateUserParams) {
   }
 }
 
+export async function findOneUserBy(attrs: any) {
+  try {
+    await connectToDatabase();
+
+    const foundUser = await User.findOne(attrs);
+
+    if (!foundUser) {
+      throw new Error("User not found!");
+    }
+
+    return JSON.parse(JSON.stringify(foundUser));
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 export async function getUserById(userId: string) {
   try {
     await connectToDatabase();
