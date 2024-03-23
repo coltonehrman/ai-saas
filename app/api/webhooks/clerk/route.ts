@@ -7,6 +7,8 @@ import { clerkClient } from "@clerk/nextjs";
 import { headers } from "next/headers";
 
 export async function POST(req: Request) {
+  console.log('webhook');
+
   const CLERK_WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
   if (!CLERK_WEBHOOK_SECRET) {
@@ -46,8 +48,9 @@ export async function POST(req: Request) {
     });
   }
 
-  const { id } = evt.data;
   const eventType = evt.type;
+
+  console.log(evt);
 
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } =

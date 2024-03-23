@@ -5,12 +5,13 @@ import Image from "next/image";
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import React from "react";
 import { useToast } from "../ui/use-toast";
+import { IImage } from "@/lib/database/models/image.model";
 
 type MediaUploaderProps = {
   onValueChange: (value: string) => void;
-  setImage: React.Dispatch<React.SetStateAction<Image>>;
+  setImage: React.Dispatch<React.SetStateAction<Partial<IImage>>>;
   publicId: string;
-  image: Image;
+  image: Partial<IImage>;
   type: string;
 };
 
@@ -77,6 +78,7 @@ const MediaUploader = ({
                 sizes={"(max-width: 767px): 100vw, 50vw"}
                 placeholder={dataUrl as PlaceholderValue}
                 className="media-uploader_cldImage"
+                onClick={() => open()}
               />
             </div>
           ) : (

@@ -1,4 +1,4 @@
-import { findOneUserBy, getUserById } from "@/lib/actions/user.actions";
+import { findOneUserBy } from "@/lib/actions/user.actions";
 
 import Header from "@/components/shared/Header";
 import React from "react";
@@ -24,7 +24,7 @@ const AddTransformationTypePage = async ({
         <TransformationForm
           action="add"
           userId={foundUser._id}
-          creditBalance={0}
+          creditBalance={foundUser.creditBalance}
           type={type}
         />
       </section>

@@ -4,18 +4,21 @@ import { navLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { MouseEventHandler } from "react";
+import { SheetClose } from "../ui/sheet";
 
 const NavItem = ({
   link,
   className = "sidebar-nav_element group",
   activeClassName = "bg-purple-gradient text-white",
   iconActiveClassName,
+  onClick = () => {},
 }: {
   link: (typeof navLinks)[0];
   className?: string;
   activeClassName?: string;
   iconActiveClassName?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }) => {
   const pathname = usePathname();
   const isActive = link.route === pathname;
@@ -25,7 +28,7 @@ const NavItem = ({
       key={link.route}
       className={`${className} ${isActive ? activeClassName : "text-gray-700"}`}
     >
-      <Link className="sidebar-link" href={link.route}>
+      <Link className="sidebar-link" href={link.route} onClick={onClick}>
         <Image
           src={link.icon}
           alt="logo"

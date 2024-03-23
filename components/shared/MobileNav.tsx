@@ -1,12 +1,7 @@
-import React from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+"use client";
+
+import React, { useState } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -15,6 +10,8 @@ import NavItem from "./NavItem";
 import { Button } from "../ui/button";
 
 const MobileNav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="header">
       <Link href="/" className="flex items-center gap-2 md:py-2">
@@ -29,7 +26,7 @@ const MobileNav = () => {
       <nav className="flex gap-2">
         <UserButton afterSignOutUrl="/" />
 
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger>
             <Image
               src="/assets/icons/menu.svg"
@@ -39,6 +36,7 @@ const MobileNav = () => {
               height={32}
             />
           </SheetTrigger>
+
           <SheetContent className="sheet-content sm:w-64">
             <Image
               src="/assets/images/logo-text.svg"
@@ -54,6 +52,7 @@ const MobileNav = () => {
                     link={link}
                     className="p-18 flex whitespace-nowrap text-dark-700"
                     activeClassName="gradient-text"
+                    onClick={() => setIsOpen(!isOpen)}
                   />
                 ))}
               </ul>
@@ -65,6 +64,7 @@ const MobileNav = () => {
                     link={link}
                     className="p-18 flex whitespace-nowrap text-dark-700"
                     activeClassName="gradient-text"
+                    onClick={() => setIsOpen(!isOpen)}
                   />
                 ))}
               </ul>
@@ -78,6 +78,7 @@ const MobileNav = () => {
                     link={link}
                     className="p-18 flex whitespace-nowrap text-dark-700"
                     activeClassName="gradient-text"
+                    onClick={() => setIsOpen(!isOpen)}
                   />
                 ))}
               </ul>
